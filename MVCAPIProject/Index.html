@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html ng-app="angularjsApp">
+<head>
+    <title>Planets</title>
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/bootstrap.css" rel="stylesheet">
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/angular.js"></script>
+    <script type="text/javascript" src="Scripts/angular-route.js"></script>
+    <script type="text/javascript" src="App/app.route.js"></script>
+    <script type="text/javascript" src="App/app.module.js"></script>
+    <script type="text/javascript" src="App/Model/HumanModel.js"></script>
+    <script type="text/javascript" src="App/Service/HumanService.js"></script>
+    <script type="text/javascript" src="App/Controller/HumanController.js"></script>
+    <script type="text/javascript" src="App/Controller/HiController.js"></script>
+    <script type="text/javascript" src="App/Interface/HumanInterface.js"></script>
+</head>
+<body ><!--style="background-image: url('App/Images/plain3.jpg')"--> 
+    <div class="container-fluid">
+        <!--jumbotron-->
+        <div class="jumbotron" >
+
+            <h1>MY PLANETS</h1>
+            <p>Book for your planet here</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div ng-view="">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

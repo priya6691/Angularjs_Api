@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html ng-app="angularjsApp">
+<head>
+    <title>Planets are here</title>
+    <script src="../../Scripts/jquery-2.1.4.js"></script>
+    <script src="../../Scripts/jquery-2.1.4.min.js"></script>
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/bootstrap.css" rel="stylesheet">
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/angular.js"></script>
+    <script type="text/javascript" src="Scripts/angular-route.js"></script>
+    <script type="text/javascript" src="App/app.route.js"></script>
+    <script type="text/javascript" src="App/app.module.js"></script>
+    <script type="text/javascript" src="App/Model/HumanModel.js"></script>
+    <script type="text/javascript" src="App/Service/HumanService.js"></script>
+    <script type="text/javascript" src="App/Controller/HumanController.js"></script>
+    <script type="text/javascript" src="App/Interface/HumanInterface.js"></script>
+</head>
+<body>
+
+    <div ng-controller="HumanController">
+        <!--nav bar-->
+        <ul class="nav nav-tabs" role="tablist" id="tabs" data-tabs="tabs">
+            <li ><a href="#Home" role="tab" data-toggle="tab">Home</a></li>
+            <li ><a href="#Add" role="tab" data-toggle="tab">Add</a></li>
+            <li><a href="#Get" role="tab" data-toggle="tab" >Get</a></li>
+        </ul>
+        <!--nav content-->
+        <div class="tab-content" id="my-tab-content">
+            <div class="active tab-pane" id="Home">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="my-carousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#my-carousel" data-slide-to="1"></li>
+                                <li data-target="#my-carousel" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img alt="First slide" src="../App/Images/andro(1).jpg">
+                                    <div class="carousel-caption">
+                                        <h3>WELCOME</h3>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="Second slide" src="../App/Images/audi.jpg">
+                                </div>
+                                <div class="item">
+                                    <img alt="Third slide" src="../App/Images/multi.jpg">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#my-carousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#my-carousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="active tab-pane" id="Add">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal">
+                            <input type="text" placeholder="Enter EId I" name="txtId" ng-model="human.EID" /><br />
+                            <input type="text" placeholder="Enter PlanetID I" name="txtId" ng-model="human.PlanetID" /><br />
+                            <input type="text" placeholder="Enter HumanName S" name="txtId" ng-model="human.HumanName" /><br />
+                            <input type="text" placeholder="Enter Gender S" name="txtId" ng-model="human.Gender" /><br />
+                            <input type="text" placeholder="Enter FamilySize S" name="txtId" ng-model="human.FamilySize" /><br />
+                            <br />
+                            <button class="btn-small" ng-click="post(human)">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="active tab-pane" id="Get">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <table class="table table-striped table-hover" align="left">
+                            <thead>
+                                <tr>
+                                    <th>EID</th>
+                                    <th>PlanetID</th>
+                                    <th>HumanName</th>
+                                    <th>Gender</th>
+                                    <th>FamilySize</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="human in humanDataset" ng-include="getTemplate(human)">
+                                    <script type="text/ng-template" id="display">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                        <td>{{human.EID}}</td>
+                                        <td>{{human.PlanetID}}</td>
+                                        <td>{{human.HumanName}}</td>
+                                        <td>{{human.Gender}}</td>
+                                        <td>{{human.FamilySize}}</td>
+                                        <td><button class="btn-small" ng-click="edit(human)">Edit</button></td>
+                                        <td><button class="btn-small" ng-click="Delete(human.EID)">Delete</button></td>
+                                    </script>
+                                    <script type="text/ng-template" id="edit">
+
+                                        <td><input type="text" ng-model=human.EID class="form-control input-sm" /></td>
+                                        <td><input type="text" ng-model=human.PlanetID class="form-control input-sm" /></td>
+                                        <td><input type="text" ng-model=human.HumanName class="form-control input-sm" /></td>
+                                        <td><input type="text" ng-model=human.Gender class="form-control input-sm" /></td>
+                                        <td><input type="text" ng-model=human.FamilySize class="form-control input-sm" /></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" ng-click="put(human)">Save</button>
+                                            <button type="button" class="btn btn-danger" ng-click="reset()">Cancel</button>
+                                        </td>
+
+                                    </script>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
